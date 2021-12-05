@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D0FFFA">
+
+    <EditText
+        android:id="@+id/etePassword"
+        android:layout_width="338dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eteUsername" />
+
+    <EditText
+        android:id="@+id/eteUsername"
+        android:layout_width="338dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tviGoutside" />
+
+    <Button
+        android:id="@+id/butLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#ED19C567"
+        android:text="LOGIN"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etePassword" />
+
+    <Button
+        android:id="@+id/butRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#ED0CAC86"
+        android:text="REGISTER"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/butLogin" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="67dp"
+        android:layout_height="81dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        android:rotation="-12"
+        android:rotationY="178"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/pies" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="67dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="60dp"
+        android:rotation="-12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pies" />
+
+    <TextView
+        android:id="@+id/tviGoutside"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:background="#D0FFFA"
+        android:fontFamily="sans-serif-black"
+        android:text="GOUTSIDE"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="#116EBF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Demos una caminata..."
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        tools:layout_editor_absoluteY="613dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="95dp"
+        android:layout_height="101dp"
+        android:layout_marginBottom="-28dp"
+        app:layout_constraintBottom_toTopOf="@+id/tviGoutside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/silueta" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="67dp"
+        android:layout_height="77dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:srcCompat="@drawable/mujer" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="52dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/trota" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

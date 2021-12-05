@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D0FFFA">
+
+    <TextView
+        android:id="@+id/tviRegister"
+        android:layout_width="216dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="144dp"
+        android:fontFamily="sans-serif-black"
+        android:text="REGISTER"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#0F64AF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/eteNewName"
+        android:layout_width="338dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Your name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tviRegister" />
+
+    <EditText
+        android:id="@+id/eteNewUsername"
+        android:layout_width="338dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:hint="New Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eteNewName" />
+
+    <EditText
+        android:id="@+id/eteNewPassword"
+        android:layout_width="338dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eteNewUsername" />
+
+    <ImageView
+        android:id="@+id/iviPickIcon"
+        android:layout_width="146dp"
+        android:layout_height="113dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eteNewPassword"
+        app:srcCompat="@drawable/pugfoto" />
+
+    <TextView
+        android:id="@+id/tviIconMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Select user icon!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iviPickIcon" />
+
+    <Button
+        android:id="@+id/butNewRegister"
+        android:layout_width="314dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#ED0CAC86"
+        android:text="REGISTER"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tviIconMessage" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="96dp"
+        android:layout_height="99dp"
+        app:layout_constraintBottom_toTopOf="@+id/tviRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/trota" />
+
+    <Button
+        android:id="@+id/butCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#1B4C00"
+        android:text="Cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/butNewRegister" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "413978386146",
+    "project_id": "goutside-pm",
+    "storage_bucket": "goutside-pm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413978386146:android:271abbc75bb58f3f3048bb",
+        "android_client_info": {
+          "package_name": "pe.edu.ulima.pm.goutsidevf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413978386146-buacf5re2dlleoo03upffetrrggrh35i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFc72G0VRhasg__JZTiNmqIf1gzXUHjoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413978386146-buacf5re2dlleoo03upffetrrggrh35i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
