@@ -20,7 +20,7 @@ class SignupActivity : AppCompatActivity() {
 
         //-------------------------------------------------------
 
-        findViewById<Button>(R.id.butNewRegister).setOnClickListener { v : View ->
+        findViewById<Button>(R.id.butNewRegister).setOnClickListener { v : View ->//
             //Gaurdamos los Datos en Firebase
             LoginManager.instance.saveUser(
                 findViewById<EditText>(R.id.eteNewName).text.toString(),
