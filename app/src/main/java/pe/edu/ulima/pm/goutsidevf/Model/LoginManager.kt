@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm.goutsidevf.Model
 
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -33,5 +34,10 @@ class LoginManager {
             .addOnFailureListener {
                 callbackError(it.message!!)
             }
+    }
+
+    fun exists(username: String){
+        val usersCollection = dbFirebase.collection("users").get()
+
     }
 }

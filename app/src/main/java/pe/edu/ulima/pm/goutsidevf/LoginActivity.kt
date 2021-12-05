@@ -3,12 +3,15 @@ package pe.edu.ulima.pm.goutsidevf
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 //Data de Login para el Shared Preference
 //
@@ -23,6 +26,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var eteUsername : EditText
     private lateinit var etePassword : EditText
 
+    private val dbFirebase = Firebase.firestore
+
     //-----------------------------------------------------------------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +37,9 @@ class LoginActivity : AppCompatActivity() {
 
         //-- Revisamos si es que ya hay un usuario Logeado --
         if(isLogued()){
-            val username = getLoginUsername()
-            changeActivity(username)
+            val username = getLoginInfo()[0]
+            val name = getLoginInfo()[1]
+            changeActivity(username, name)
         }
         //---------------------------------------------------
 
@@ -44,15 +50,35 @@ class LoginActivity : AppCompatActivity() {
         val butLogin : Button = findViewById(R.id.butLogin)
         butLogin.setOnClickListener { _ : View ->
 
-            //Verificacion de si el Login es Correcto
-            // CORREGIR ESTOO!!!
-            if (eteUsername.text.toString() == "larraondo" && etePassword.text.toString() == "paola2005"){
-                almacenarInfoLogin(eteUsername.text.toString())
-                // Implicitamente pasamos al otro Activity
+            // -- Verificacion de si el Login es Correcto -------------
+
+            // -- Busqueda de Usuario en FB
+            val query = dbFirebase.collection("users").whereEqualTo("username", eteUsername.text.toString())
+            query.get().addOnSuccessListener {
+
+                val findUser = it.documents[0]
+
+                //Verificamos si la contraseña es correcta
+                if (findUser["password"].toString() == etePassword.text.toString()){
+                    //Almacenmas la Info del UsuarioLogueado y cambiamos el Activity (implicito)
+                    //almacenarInfoLogin(findUser["username"].toString(), findUser["name"].toString())
+                    Log.i("mensajeBueno","EXITO")
+                }
+                else{
+                    Log.i("mensajeError","La contraseña No es correcta")
+                    Toast.makeText(this, "La contraseña es incorrecta", Toast.LENGTH_LONG).show()
+                    //Dejamos en vacío los campos
+                    eteUsername.setText("")
+                    etePassword.setText("")
+                }
+
+            }.addOnFailureListener {
+                Log.i("mensajeError","No se encontro al ususario")
+                Toast.makeText(this, "No se encontro al usuario", Toast.LENGTH_LONG).show()
             }
-            else{
-                Toast.makeText(this, "Hiciste Click, pero No existes", Toast.LENGTH_LONG).show()
-            }
+
+
+
         }
 
         //-- Funcionalidad del Boton Registrar --
@@ -111,34 +137,37 @@ class LoginActivity : AppCompatActivity() {
 
     //-----------------------------------------------------------------------------
     // -- Obtener Info (Name y Username) de Usuario ----------------------------------
-    fun getLoginUsername(): String {
+    fun getLoginInfo(): Array<String> {
         val sp = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
         val username = sp.getString("LOGIN_USERNAME", "")!!
-        return username
+        val name = sp.getString("LOGIN_NAME", "")!!
+        return arrayOf(username, name)
     }
 
     //-----------------------------------------------------------------------------
     // -- Almacenar Info de Login en un SharedPreference ----------------------------------
-    private fun almacenarInfoLogin(username: String){
+    private fun almacenarInfoLogin(username: String, name : String){
         val editor = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE).edit()
         editor.putString("LOGIN_USERNAME", username)
+        editor.putString("LOGIN_NAME", name)
         editor.putLong("LOGIN_DATE", Date().getTime())
         editor.commit() //apply()
 
         //Una vez que se ha almacenado la info del usuario, cambiamos el Activity
-        changeActivity(username)
+        changeActivity(username, name)
     }
 
     //-----------------------------------------------------------------------------
     // -- Cambiar a otro Activity, manteniendo la info del usuario ----------------------------------
-    private fun changeActivity(username:String){
+    private fun changeActivity(username:String, name:String){
         val intent : Intent = Intent()
         intent.setClass(this, MainActivity::class.java)
 
         val bundle : Bundle = Bundle()
         bundle.putString("username", username)
-        intent.putExtra("data",bundle)
+        bundle.putString("name", name)
 
+        intent.putExtra("data",bundle)
         startActivity(intent)
     }
 
