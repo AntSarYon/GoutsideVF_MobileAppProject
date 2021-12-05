@@ -14,18 +14,17 @@ import pe.edu.ulima.pm.goutsidevf.Model.LoginManager
 
 class SignupActivity : AppCompatActivity() {
 
-    val eteNewName = findViewById<EditText>(R.id.eteNewName)
-    val eteNewUsername = findViewById<EditText>(R.id.eteNewUsername)
-    val eteNewPassword= findViewById<EditText>(R.id.eteNewPassword)
-
     private val dbFirebase = Firebase.firestore
-
 
     //-----------------------------------------------------------------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        val eteNewName = findViewById<EditText>(R.id.eteNewName)
+        val eteNewUsername = findViewById<EditText>(R.id.eteNewUsername)
+        val eteNewPassword= findViewById<EditText>(R.id.eteNewPassword)
 
         //-------------------------------------------------------
 
