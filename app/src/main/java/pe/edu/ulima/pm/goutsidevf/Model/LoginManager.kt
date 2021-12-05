@@ -6,7 +6,7 @@ import com.google.firebase.ktx.Firebase
 class LoginManager {
 
     companion object{
-        lateinit var instance : LoginManager
+        var instance : LoginManager = LoginManager()
             private set
     }
 
