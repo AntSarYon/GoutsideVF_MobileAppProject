@@ -72,16 +72,16 @@ class MainActivity : AppCompatActivity() {
 
     // -- CAMBIAR AL FRAGMENT DE RANKING -------------------
     private fun changeRankingFragment() {
-        TODO("Not yet implemented")
+        //...
     }
 
     // -- CAMBIAR AL FRAGMENT DE EVENTOS -------------------
     private fun changeEventsFragment() {
-        TODO("Not yet implemented")
+        //...
     }
 
     // -- CAMBIAR AL FRAGMENT DE PERFIL -------------------
     private fun changeProfileFragment() {
-        TODO("Not yet implemented")
+        //...
     }
 }
