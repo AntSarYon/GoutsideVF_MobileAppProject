@@ -13,18 +13,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import pe.edu.ulima.pm.goutsidevf.ui.ranking.RankingFragment
 import pe.edu.ulima.pm.goutsidevf.databinding.ActivityMain2Binding
-import pe.edu.ulima.pm.goutsidevf.ui.events.EventsFragment
-import pe.edu.ulima.pm.goutsidevf.ui.profile.ProfileFragment
+
 
 class Main2Activity : AppCompatActivity() {
-
-    private var fragmentHome : Fragment = Fragment()
-    private var fragmentEvents : Fragment = Fragment()
-    private var fragmentProfile : Fragment = Fragment()
-    private var fragmentRanking : Fragment = Fragment()
 
     private lateinit var sensorManager : SensorManager
 
@@ -38,13 +30,7 @@ class Main2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        fragmentEvents = EventsFragment()
-        fragmentProfile = ProfileFragment()
-        fragmentRanking = RankingFragment()
-        fragmentHome = RankingFragment()
-
-        //------------------------------------------------------------
-        //------ Creado por defecto por el Drawer ----------------
+        // 1. ------ Creado por defecto por el Drawer -----------//
 
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -69,35 +55,11 @@ class Main2Activity : AppCompatActivity() {
             ), drawerLayout
         )
 
-        //-- Establecer llamado a Pantallas
+        //-- Establecer llamado a Pantallas--//
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         //------------------------------------------------------------
         //-------------------------------------------------------------
-
-
-        navView.setNavigationItemSelectedListener { menuItem : MenuItem ->
-
-            if(menuItem.itemId==R.id.navProfile){
-                changeProfileFragment()
-            }
-            else if(menuItem.itemId==R.id.navEvents){
-                changeEventsFragment()
-            }
-            else if(menuItem.itemId==R.id.navRanking){
-                changeRankingFragment()
-            }
-
-            menuItem.setChecked(true)
-            drawerLayout.closeDrawers()
-            true
-        }
-
-        //Carga el fragment por Defecto
-        //val ft = supportFragmentManager.beginTransaction()       //supportFragmentManager --> manager gestor de fragments DE ESTE ACTIVITY <-- ES UNA TRANSACCION
-        //ft.replace(R.id.nav_host_fragment_content_main, fragmentProfile)                        //Nosotros podemos hacer diversas acciones con fragments;
-        //ft.commit()
-
     }
 
     //-----------------------------------------------------------------------------
@@ -115,38 +77,12 @@ class Main2Activity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    //---------------------------------------------------------------------------
-    //--------------------------------------------------------------------------
-
-
-
-    //-- Abrir el Menu cada vez que se haga Click ---------------------------------
+/*    //-- Abrir el Menu cada vez que se haga Click ---------------------------------
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_settings){
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-
-
-
-    //-----------------------------------------------------------------------------
-    // -- FUNCIONES DE CAMBIO DE FRAGMENT
-
-    // -- CAMBIAR AL FRAGMENT DE RANKING -------------------
-    private fun changeRankingFragment() {
-        //...
-    }
-
-    // -- CAMBIAR AL FRAGMENT DE EVENTOS -------------------
-    private fun changeEventsFragment() {
-        //...
-    }
-
-    // -- CAMBIAR AL FRAGMENT DE PERFIL -------------------
-    private fun changeProfileFragment() {
-        //...
-    }
+    }*/
 
 }
