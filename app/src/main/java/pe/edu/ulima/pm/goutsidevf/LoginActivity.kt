@@ -17,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 //
 data class LoginInfo(                   //
     val username:String,                //
+    val name : String,                  //
     val loginDate: Date                 //
 )                                       //
 //---------------------------------------
@@ -162,7 +163,7 @@ class LoginActivity : AppCompatActivity() {
     // -- Cambiar a otro Activity, manteniendo la info del usuario ----------------------------------
     private fun changeActivity(username:String, name:String){
         val intent : Intent = Intent()
-        intent.setClass(this, MainActivity::class.java)
+        intent.setClass(this, Main2Activity::class.java)
 
         val bundle : Bundle = Bundle()
         bundle.putString("username", username)
