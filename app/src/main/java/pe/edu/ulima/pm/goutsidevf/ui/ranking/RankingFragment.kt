@@ -12,6 +12,17 @@ import pe.edu.ulima.pm.goutsidevf.databinding.FragmentRankingBinding
 
 class RankingFragment : Fragment()   {
 
+
+
+
+
+
+
+
+
+    //------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------
+
     private lateinit var rankingViewModel: RankingViewModel
     private var _binding: FragmentRankingBinding? = null
 
@@ -37,8 +48,15 @@ class RankingFragment : Fragment()   {
         return root
     }
 
+    //--------------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------------------
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+    //------------------------------------------------------------------
+
+
+
 }

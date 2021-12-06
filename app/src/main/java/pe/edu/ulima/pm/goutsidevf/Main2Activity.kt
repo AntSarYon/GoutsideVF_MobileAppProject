@@ -3,6 +3,7 @@ package pe.edu.ulima.pm.goutsidevf
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -20,14 +21,19 @@ import pe.edu.ulima.pm.goutsidevf.ui.profile.ProfileFragment
 
 class Main2Activity : AppCompatActivity() {
 
+    private var fragmentHome : Fragment = Fragment()
     private var fragmentEvents : Fragment = Fragment()
     private var fragmentProfile : Fragment = Fragment()
     private var fragmentRanking : Fragment = Fragment()
 
     private lateinit var sensorManager : SensorManager
 
+    //----------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ------------------------
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMain2Binding
+    //------------------------------------------------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +41,10 @@ class Main2Activity : AppCompatActivity() {
         fragmentEvents = EventsFragment()
         fragmentProfile = ProfileFragment()
         fragmentRanking = RankingFragment()
+        fragmentHome = RankingFragment()
 
-        //-----------------------------------------------------------------------------
-        //-- Configuracion del DRAWER
+        //------------------------------------------------------------
+        //------ Creado por defecto por el Drawer ----------------
 
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -65,7 +72,31 @@ class Main2Activity : AppCompatActivity() {
         //-- Establecer llamado a Pantallas
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //------------------------------------------------------------------------------
+        //------------------------------------------------------------
+        //-------------------------------------------------------------
+
+
+        navView.setNavigationItemSelectedListener { menuItem : MenuItem ->
+
+            if(menuItem.itemId==R.id.navProfile){
+                changeProfileFragment()
+            }
+            else if(menuItem.itemId==R.id.navEvents){
+                changeEventsFragment()
+            }
+            else if(menuItem.itemId==R.id.navRanking){
+                changeRankingFragment()
+            }
+
+            menuItem.setChecked(true)
+            drawerLayout.closeDrawers()
+            true
+        }
+
+        //Carga el fragment por Defecto
+        //val ft = supportFragmentManager.beginTransaction()       //supportFragmentManager --> manager gestor de fragments DE ESTE ACTIVITY <-- ES UNA TRANSACCION
+        //ft.replace(R.id.nav_host_fragment_content_main, fragmentProfile)                        //Nosotros podemos hacer diversas acciones con fragments;
+        //ft.commit()
 
     }
 
@@ -84,15 +115,20 @@ class Main2Activity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    /*
+    //---------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+
+
+
     //-- Abrir el Menu cada vez que se haga Click ---------------------------------
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
-            dlaMain.openDrawer(GravityCompat.START)
+        if(item.itemId == R.id.action_settings){
+            return true
         }
         return super.onOptionsItemSelected(item)
     }
-    */
+
+
 
 
     //-----------------------------------------------------------------------------

@@ -12,6 +12,17 @@ import pe.edu.ulima.pm.goutsidevf.databinding.FragmentEventsBinding
 
 class EventsFragment : Fragment() {
 
+
+
+
+
+
+
+
+
+    //------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------
+
     private lateinit var eventsViewModel: EventsViewModel
     private var _binding: FragmentEventsBinding? = null
 
@@ -37,8 +48,14 @@ class EventsFragment : Fragment() {
         return root
     }
 
+    //--------------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------------------
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+    //------------------------------------------------------------------
+
+
 }

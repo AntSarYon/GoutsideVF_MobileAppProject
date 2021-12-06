@@ -12,6 +12,17 @@ import pe.edu.ulima.pm.goutsidevf.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
+
+
+
+
+
+
+
+
+    //------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------
+
     private lateinit var profileViewModel: ProfileViewModel
     private var _binding: FragmentProfileBinding? = null
 
@@ -37,8 +48,14 @@ class ProfileFragment : Fragment() {
         return root
     }
 
+    //--------------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------------------
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+    //------------------------------------------------------------------
+
+
 }

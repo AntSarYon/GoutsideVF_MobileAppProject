@@ -13,6 +13,17 @@ import pe.edu.ulima.pm.goutsidevf.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+
+
+
+
+
+
+
+
+    //------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------
+
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
@@ -36,10 +47,18 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
         return root
+
+        //-------------------------------------------------------------
     }
 
+    //--------------------------------------------------------------------
+    //------ Creado por defecto por el Drawer ----------------------------
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+    //------------------------------------------------------------------
+
+
+
 }
