@@ -61,8 +61,9 @@ class LoginActivity : AppCompatActivity() {
                 //Verificamos si la contraseña es correcta
                 if (findUser["password"].toString() == etePassword.text.toString()){
                     //Almacenmas la Info del UsuarioLogueado y cambiamos el Activity (implicito)
-                    //almacenarInfoLogin(findUser["username"].toString(), findUser["name"].toString())
                     Log.i("mensajeBueno","EXITO")
+                    almacenarInfoLogin(findUser["username"].toString(), findUser["name"].toString())
+
                 }
                 else{
                     Log.i("mensajeError","La contraseña No es correcta")

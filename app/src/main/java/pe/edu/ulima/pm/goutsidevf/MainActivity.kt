@@ -59,6 +59,11 @@ class MainActivity : AppCompatActivity() {
             dlaMain.closeDrawers()
             true
         }
+
+        val ft = supportFragmentManager.beginTransaction()       //supportFragmentManager --> manager gestor de fragments DE ESTE ACTIVITY <-- ES UNA TRANSACCION
+        ft.add(R.id.flaContent,fragmentProfile)                        //Nosotros podemos hacer diversas acciones con fragments;
+        ft.commit()
+
     }
 
     //-- Abrir el Menu cada vez que se haga Click ---------------------------------
