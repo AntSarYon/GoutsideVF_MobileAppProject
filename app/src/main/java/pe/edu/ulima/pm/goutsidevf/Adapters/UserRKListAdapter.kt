@@ -43,7 +43,7 @@ class UserRKListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_event, parent, false) //obtenemos el view padre
+            .inflate(R.layout.item_ranking, parent, false) //obtenemos el view padre
         val viewHolder = ViewHolder(view, listener, usersList)
 
         return viewHolder

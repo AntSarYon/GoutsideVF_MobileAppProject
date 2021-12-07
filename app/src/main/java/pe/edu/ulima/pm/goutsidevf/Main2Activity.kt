@@ -21,12 +21,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.goutsidevf.Model.Event
+import pe.edu.ulima.pm.goutsidevf.Model.UserRK
 import pe.edu.ulima.pm.goutsidevf.databinding.ActivityMain2Binding
 import pe.edu.ulima.pm.goutsidevf.ui.events.EventsFragment
 import pe.edu.ulima.pm.goutsidevf.ui.home.HomeFragment
+import pe.edu.ulima.pm.goutsidevf.ui.ranking.RankingFragment
 
 
-class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListener {
+class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListener, RankingFragment.OnRankSelectedListener {
     private lateinit var fragment : Fragment
     private lateinit var sensorManager : SensorManager
 
@@ -114,5 +116,9 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
         val intent = Intent(this, MapActivity::class.java)
         intent.putExtra("location_data",bundle)
         startActivity(intent)
+    }
+
+    override fun OnSelecte(user: UserRK) {
+
     }
 }
