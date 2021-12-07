@@ -33,8 +33,8 @@ class EventsManager(context: Context) {
                 for (document in res) {
                     val ev = Event(
                         document.data["nombre"]!! as String,
-                        document.getTimestamp("fecha")!!.seconds,
-                        document.data["image"]!! as String,
+                        document.getTimestamp("fecha")!!.seconds*1000,
+                        document.data["image"]!! as String
                         //(document.data["location"]!! as DocumentReference).id.toLong(),
                     )
 //                    Log.i("evento",ev.toString())
