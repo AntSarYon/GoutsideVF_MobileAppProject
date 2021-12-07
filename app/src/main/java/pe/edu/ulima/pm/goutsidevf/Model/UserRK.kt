@@ -13,5 +13,5 @@ data class UserRK(
 
     val photo : String,
 
-    val puntaje : Integer
+    val puntaje : Long
 )

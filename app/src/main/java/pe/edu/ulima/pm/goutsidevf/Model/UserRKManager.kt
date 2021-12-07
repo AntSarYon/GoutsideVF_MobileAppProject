@@ -22,7 +22,7 @@ class UserRKManager(context: Context) {
                         document.data["username"]!! as String,
                         document.data["name"]!! as String,
                         document.data["photo"]!! as String,
-                        document.data["puntaje"]!! as Integer
+                        document.data["puntaje"]!! as Long
                         //(document.data["location"]!! as DocumentReference).id.toLong(),
                     )
 //                    Log.i("evento",ev.toString())
