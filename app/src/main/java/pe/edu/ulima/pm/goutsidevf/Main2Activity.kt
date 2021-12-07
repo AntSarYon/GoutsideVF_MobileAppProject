@@ -107,8 +107,12 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
     }
 
     override fun OnSelect(event: Event) {
-        val intent = Intent()
-        intent.setClass(this, MapActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("latitud",event.latitud.toString())
+        bundle.putString("longitud",event.longitud.toString())
+        bundle.putString("nombre",event.name)
+        val intent = Intent(this, MapActivity::class.java)
+        intent.putExtra("location_data",bundle)
         startActivity(intent)
     }
 }
