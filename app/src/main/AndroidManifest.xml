@@ -26,6 +26,11 @@
             android:value="@string/google_map_key"/>
 
         <activity
+            android:name=".PhotoActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize"/>
+
+        <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.GoutsideVF.NoActionBar">
