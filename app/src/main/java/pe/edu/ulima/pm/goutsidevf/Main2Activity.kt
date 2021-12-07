@@ -84,7 +84,7 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
                 mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
             isSensorPresent = true;
         } else {
-            isSensorPresent = false;
+            isSensorPresent = false;//
         }
 
 
