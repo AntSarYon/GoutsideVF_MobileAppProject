@@ -18,13 +18,11 @@ class EventsListAdapter(
     private val eventsList : List<Event>,
     private val fragment : Fragment,
     private val listener : (Event) ->Unit) :
-
     RecyclerView.Adapter<EventsListAdapter.ViewHolder>() {
 
     class ViewHolder(
         view : View, val listener : (Event) ->Unit,
-        val eventsList: List<Event>) : RecyclerView.ViewHolder(view),
-        View.OnClickListener {
+        val eventsList: List<Event>) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         val tviNombre : TextView
         val iviEvent : ImageView
@@ -37,7 +35,7 @@ class EventsListAdapter(
         }
 
         override fun onClick(v: View?) {
-            listener(eventsList[adapterPosition])   //Posicion relativa -> usado para obtener la lista de productos almacenado
+            listener(eventsList[adapterPosition])
         }
 
     }
