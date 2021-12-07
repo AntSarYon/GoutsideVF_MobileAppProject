@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -16,6 +17,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -24,12 +28,15 @@ import kotlin.jvm.Throws
 
 class PhotoActivity : AppCompatActivity() {
 
+    private val dbFirebase = Firebase.firestore
     private lateinit var iviFoto : ImageView
     private var photoPath : String? = null
+    lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo)
+        storage = FirebaseStorage.getInstance()
 
         iviFoto = findViewById(R.id.iviFoto)
 
@@ -137,6 +144,39 @@ class PhotoActivity : AppCompatActivity() {
         photoPath = imageFile.absolutePath
         return imageFile
     }
+
+    private fun uploadImage(resultado: (String)->Unit) {
+        val id = getPreferences(MODE_PRIVATE).getString("USER_ID", "")
+
+        var storageRef = storage.reference
+        val file = Uri.fromFile(File(photoPath))
+        val riversRef = storageRef.child("images/${file.lastPathSegment}")
+        val uploadTask = riversRef.putFile(file)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+            Log.e("UploadError", it.toString())
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+
+        }
+        val urlTask = uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            riversRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                resultado(downloadUri.toString())
+
+            } else {
+                Log.e("UploadCompleteError", task.toString())
+            }
+        }
+    }
+
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
