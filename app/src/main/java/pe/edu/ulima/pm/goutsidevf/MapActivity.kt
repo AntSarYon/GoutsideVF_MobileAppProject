@@ -22,12 +22,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private var latitud : String? = null
     private var longitud : String? = null
     private var nomb : String? = null
+    private var latitudS : String? = null
+    private var longitudS : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         latitud = intent.getBundleExtra("location_data")?.getString("latitud")?.toString()
         longitud = intent.getBundleExtra("location_data")?.getString("longitud")?.toString()
         nomb = intent.getBundleExtra("location_data")?.getString("nombre")?.toString()
+        latitudS = intent.getBundleExtra("location_selected")?.getString("latitud")?.toString()
+        longitudS = intent.getBundleExtra("location_selected")?.getString("longitud")?.toString()
         setContentView(R.layout.activity_map)
 
         createMapFragment()
@@ -81,17 +85,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         //-- Que haga un Zoom a un Marcador
 
         //Si no hay coordenadas, apuntar hacia ULIMA
-        if(latitud==null&&longitud==null){
-        map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(cooULIMA, 18f), 4000, null
-        )}
-
-        //Si hay coordenadas ingresadas, apuntar hacia estas
-        else{
-        map.animateCamera(
+        if(latitud!=null&&longitud!=null){
+            map.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(LatLng(latitud!!.toDouble(),longitud!!.toDouble())
                     , 14f), 4000, null
             )
+        }else if(latitudS!=null && longitudS != null){
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(LatLng(latitudS!!.toDouble(),longitudS!!.toDouble())
+                    , 18f), 4000, null
+            )
+        }
+        else{
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(cooULIMA, 18f), 4000, null
+            )
+
         }
 
     }
