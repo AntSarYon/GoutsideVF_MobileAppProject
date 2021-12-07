@@ -85,17 +85,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         //-- Que haga un Zoom a un Marcador
 
         //Si no hay coordenadas, apuntar hacia ULIMA
-        if(latitud==null&&longitud==null){
-        map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(cooULIMA, 18f), 4000, null
-        )}
-
-        //Si hay coordenadas ingresadas, apuntar hacia estas
-        else{
-        map.animateCamera(
+        if(latitud!=null&&longitud!=null){
+            map.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(LatLng(latitud!!.toDouble(),longitud!!.toDouble())
                     , 14f), 4000, null
             )
+        }else if(latitudS!=null && longitudS != null){
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(LatLng(latitudS!!.toDouble(),longitudS!!.toDouble())
+                    , 18f), 4000, null
+            )
+        }
+        else{
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(cooULIMA, 18f), 4000, null
+            )
+
         }
 
     }
