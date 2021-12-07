@@ -26,6 +26,6 @@
     <fragment
         android:id="@+id/nav_FRanking"
         android:name="pe.edu.ulima.pm.goutsidevf.ui.ranking.RankingFragment"
-        android:label="@string/menu_events"
+        android:label="@string/menu_ranking"
         tools:layout="@layout/fragment_ranking" />
 </navigation>
