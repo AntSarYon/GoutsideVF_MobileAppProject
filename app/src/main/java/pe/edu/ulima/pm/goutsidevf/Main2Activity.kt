@@ -120,7 +120,9 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
             startActivity(intent)
         }
         binding.appBarMain.camara.setOnClickListener {
-
+            val intent = Intent()
+            intent.setClass(this, PhotoActivity::class.java)
+            startActivity(intent)
         }
 
     }
