@@ -29,6 +29,27 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:backgroundTint="@color/white"
+        app:srcCompat="@android:drawable/sym_action_chat" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/camara"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -113,11 +113,14 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
         //------------------------------------------------------------
         //-------------------------------------------------------------
 
-        val butMapa = findViewById<Button>(R.id.butMapa)
-        butMapa.setOnClickListener {
+
+        binding.appBarMain.map.setOnClickListener {
             val intent = Intent()
             intent.setClass(this, MapActivity::class.java)
             startActivity(intent)
+        }
+        binding.appBarMain.camara.setOnClickListener {
+
         }
 
     }
