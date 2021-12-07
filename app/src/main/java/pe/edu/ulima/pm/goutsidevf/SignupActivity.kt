@@ -60,29 +60,38 @@ class SignupActivity : AppCompatActivity() {
             val query = dbFirebase.collection("users").whereEqualTo("username", eteNewUsername.text.toString())
             query.get().addOnSuccessListener {
                 if(it.isEmpty){
-                    var url = uploadImage()
-                    LoginManager.instance.saveUser(
-                        eteNewName.text.toString(),
-                        eteNewUsername.text.toString(),
-                        eteNewPassword.text.toString(),
-                        url,
-                        {
-                            //Si logramos una creacion de documento exitosa...
-                            //Enviamos una respuesta al LoginActivity
-                            val bundle = Bundle()
-                            bundle.putString("username", findViewById<EditText>(R.id.eteNewUsername).text.toString())
-                            bundle.putString("password", findViewById<EditText>(R.id.eteNewPassword).text.toString())
+                    uploadImage { url: String ->
+                        LoginManager.instance.saveUser(
+                            eteNewName.text.toString(),
+                            eteNewUsername.text.toString(),
+                            eteNewPassword.text.toString(),
+                            url,
+                            {
+                                //Si logramos una creacion de documento exitosa...
+                                //Enviamos una respuesta al LoginActivity
+                                val bundle = Bundle()
+                                bundle.putString(
+                                    "username",
+                                    findViewById<EditText>(R.id.eteNewUsername).text.toString()
+                                )
+                                bundle.putString(
+                                    "password",
+                                    findViewById<EditText>(R.id.eteNewPassword).text.toString()
+                                )
 
-                            val intent = Intent(this, LoginActivity::class.java)
-                            intent.putExtra("signup_data", bundle)
-                            setResult(RESULT_OK, intent)
-                            finish()
-                        },
-                        {   //Si ocurre un error...
-                            Log.e("SignupActivity", it)
-                            Toast.makeText(this, "Error guardando usuario", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                                val intent = Intent(this, LoginActivity::class.java)
+                                intent.putExtra("signup_data", bundle)
+                                setResult(RESULT_OK, intent)
+                                finish()
+                            },
+                            {   //Si ocurre un error...
+                                Log.e("SignupActivity", it)
+                                Toast.makeText(this, "Error guardando usuario", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        )
+                    }
+
                 }
                 else{
                     Log.i("mensajeError","Este Usuario ya esta registrado")
@@ -111,7 +120,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-    private fun uploadImage():String {
+    private fun uploadImage(resultado: (String)->Unit) {
         var storageRef = storage.reference
         val file = Uri.fromFile(File(photoPath))
         val riversRef = storageRef.child("images/${file.lastPathSegment}")
@@ -119,12 +128,12 @@ class SignupActivity : AppCompatActivity() {
         // Register observers to listen for when the download is done or if it fails
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
-            Log.e("UploadEror", it.toString())
+            Log.e("UploadError", it.toString())
         }.addOnSuccessListener { taskSnapshot ->
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
 
         }
-        var downloadUriString  :String = ""
+
         val urlTask = uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
@@ -135,14 +144,14 @@ class SignupActivity : AppCompatActivity() {
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val downloadUri = task.result
-                downloadUriString = downloadUri.toString()
+                resultado(downloadUri.toString())
 
             } else {
-                // Handle failures
-                // ...
+                Log.e("UploadCompleteError", task.toString())
             }
+
         }
-        return downloadUriString
+
     }
 
     fun takePhoto() {
