@@ -6,10 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.goutsidevf.Adapters.EventsListAdapter
@@ -53,7 +51,7 @@ class EventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        EventsManager(requireActivity().applicationContext).getProductsFirebase({events:List<Event>->
+        EventsManager().getEventsFirebase({ events:List<Event>->
             Log.i("eventos",events.toString())
             val rviEvents = view.findViewById<RecyclerView>(R.id.rviEvents)
             rviEvents.adapter = EventsListAdapter(

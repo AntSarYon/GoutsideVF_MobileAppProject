@@ -1,16 +1,14 @@
 package pe.edu.ulima.pm.goutsidevf.Model
 
-import android.content.Context
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
-class EventsManager(context: Context) {
+class EventsManager {
 
     private val dbFirebase = Firebase.firestore
 
-
-    fun getProductsFirebase(
+    fun getEventsFirebase(
         callbackOK: (List<Event>) -> Unit,
         callbackError: (String) -> Unit
     ) {
@@ -35,5 +33,4 @@ class EventsManager(context: Context) {
                 callbackError(it.message!!)
             }
     }
-
 }
