@@ -1,9 +1,11 @@
 package pe.edu.ulima.pm.goutsidevf
 
+import android.content.Context
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -19,6 +21,7 @@ import pe.edu.ulima.pm.goutsidevf.databinding.ActivityMain2Binding
 class Main2Activity : AppCompatActivity() {
 
     private lateinit var sensorManager : SensorManager
+
 
     //----------------------------------------------------------------
     //------ Creado por defecto por el Drawer ------------------------
@@ -68,6 +71,11 @@ class Main2Activity : AppCompatActivity() {
     // -- Menu Conceptual
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
+        val sp = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+        val usuario = sp.getString("LOGIN_USERNAME", "")!!
+        val nombre = sp.getString("LOGIN_NAME", "")!!
+        findViewById<TextView>(R.id.tviNVName).setText(nombre)
+        findViewById<TextView>(R.id.tviNVUsername).setText(usuario)
         menuInflater.inflate(R.menu.main2, menu)
         return true
     }

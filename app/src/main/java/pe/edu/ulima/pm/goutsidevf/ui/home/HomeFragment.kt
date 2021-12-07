@@ -13,14 +13,6 @@ import pe.edu.ulima.pm.goutsidevf.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-
-
-
-
-
-
-
-
     //------------------------------------------------------------
     //------ Creado por defecto por el Drawer ----------------
 

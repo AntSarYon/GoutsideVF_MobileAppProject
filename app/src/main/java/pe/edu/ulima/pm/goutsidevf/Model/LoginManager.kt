@@ -13,13 +13,14 @@ class LoginManager {
 
     private val dbFirebase = Firebase.firestore
 
-    fun saveUser(name : String, username: String, password : String,
+    fun saveUser(name : String, username: String, password : String, photo : String,
                  callbackOK : (Long) -> Unit, callbackError: (String) ->Unit) {
 
         val data = hashMapOf<String, Any>(
             "name" to name,
             "username" to username,
-            "password" to password
+            "password" to password,
+            "photo" to photo
         )
 
         val userId = System.currentTimeMillis()

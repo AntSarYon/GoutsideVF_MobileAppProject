@@ -2,6 +2,7 @@ package pe.edu.ulima.pm.goutsidevf
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,13 +15,13 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 //Data de Login para el Shared Preference
-//
-data class LoginInfo(                   //
-    val username:String,                //
-    val name : String,                  //
-    val loginDate: Date                 //
-)                                       //
+data class LoginInfo(
+    val username:String,
+    val name : String,
+    val loginDate: Date
+)
 //---------------------------------------
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -29,12 +30,10 @@ class LoginActivity : AppCompatActivity() {
 
     private val dbFirebase = Firebase.firestore
 
-    //-----------------------------------------------------------------------------
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //-- Revisamos si es que ya hay un usuario Logeado --
         if(isLogued()){
@@ -54,6 +53,9 @@ class LoginActivity : AppCompatActivity() {
             // -- Verificacion de si el Login es Correcto -------------
 
             // -- Busqueda de Usuario en FB
+            if(eteUsername.text.toString()=="" || etePassword.text.toString()==""){
+                Toast.makeText(this, "Campos inclompletos", Toast.LENGTH_LONG).show()
+            }else{
             val query = dbFirebase.collection("users").whereEqualTo("username", eteUsername.text.toString())
             query.get().addOnSuccessListener {
 
@@ -64,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
                     //Almacenmas la Info del UsuarioLogueado y cambiamos el Activity (implicito)
                     Log.i("mensajeBueno","EXITO")
                     almacenarInfoLogin(findUser["username"].toString(), findUser["name"].toString())
-
                 }
                 else{
                     Log.i("mensajeError","La contraseña No es correcta")
@@ -79,8 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "No se encontro al usuario", Toast.LENGTH_LONG).show()
             }
 
-
-
+        }
         }
 
         //-- Funcionalidad del Boton Registrar --
@@ -162,6 +162,7 @@ class LoginActivity : AppCompatActivity() {
     //-----------------------------------------------------------------------------
     // -- Cambiar a otro Activity, manteniendo la info del usuario ----------------------------------
     private fun changeActivity(username:String, name:String){
+
         val intent : Intent = Intent()
         intent.setClass(this, Main2Activity::class.java)
 

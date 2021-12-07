@@ -10,20 +10,19 @@
         android:id="@+id/tviRegister"
         android:layout_width="216dp"
         android:layout_height="66dp"
-        android:layout_marginTop="144dp"
         android:fontFamily="sans-serif-black"
         android:text="REGISTER"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="#0F64AF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/eteNewName"
         android:layout_width="338dp"
         android:layout_height="62dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Your name"
         android:inputType="textPersonName"
@@ -78,33 +77,34 @@
         android:id="@+id/butNewRegister"
         android:layout_width="314dp"
         android:layout_height="49dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#ED0CAC86"
         android:text="REGISTER"
         android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/butCancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tviIconMessage" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="96dp"
         android:layout_height="99dp"
-        app:layout_constraintBottom_toTopOf="@+id/tviRegister"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/trota" />
 
     <Button
         android:id="@+id/butCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#1B4C00"
         android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/butNewRegister" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
