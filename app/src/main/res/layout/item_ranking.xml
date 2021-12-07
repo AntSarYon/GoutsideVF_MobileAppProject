@@ -34,4 +34,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/iviUser"
         app:layout_constraintStart_toStartOf="@+id/tviRKUsername"
         app:layout_constraintTop_toBottomOf="@+id/tviRKUsername" />
+
+    <TextView
+        android:id="@+id/tviPuntajeRK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="[Puntaje]"
+        app:layout_constraintBottom_toBottomOf="@+id/iviUser"
+        app:layout_constraintStart_toEndOf="@+id/tviRKName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

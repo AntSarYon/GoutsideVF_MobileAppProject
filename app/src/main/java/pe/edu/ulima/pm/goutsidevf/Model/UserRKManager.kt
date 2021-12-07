@@ -21,7 +21,8 @@ class UserRKManager(context: Context) {
                     val us = UserRK(
                         document.data["username"]!! as String,
                         document.data["name"]!! as String,
-                        document.data["photo"]!! as String
+                        document.data["photo"]!! as String,
+                        document.data["puntaje"]!! as Integer
                         //(document.data["location"]!! as DocumentReference).id.toLong(),
                     )
 //                    Log.i("evento",ev.toString())

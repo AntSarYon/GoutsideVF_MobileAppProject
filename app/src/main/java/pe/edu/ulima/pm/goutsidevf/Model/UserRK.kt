@@ -12,4 +12,6 @@ data class UserRK(
     val name : String,
 
     val photo : String,
+
+    val puntaje : Integer
 )

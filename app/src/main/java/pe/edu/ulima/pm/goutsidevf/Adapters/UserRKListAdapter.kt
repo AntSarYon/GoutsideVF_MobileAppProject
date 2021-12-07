@@ -27,11 +27,13 @@ class UserRKListAdapter(
             val tviUsernameRK : TextView
             val tviNameRK : TextView
             val iviUser : ImageView
+            val tviPuntajeRK : TextView
 
             init {
                 tviUsernameRK = view.findViewById(R.id.tviRKUsername)
                 tviNameRK = view.findViewById(R.id.tviRKName)
                 iviUser = view.findViewById(R.id.iviUser)
+                tviPuntajeRK = view.findViewById(R.id.tviPuntajeRK)
                 view.setOnClickListener(this)
             }
 
@@ -56,6 +58,7 @@ class UserRKListAdapter(
             .load(usersList[position].photo)
             .fitCenter()
             .into(holder.iviUser)
+        holder.tviPuntajeRK.text = usersList[position].puntaje.toString()
     }
 
     override fun getItemCount(): Int {
