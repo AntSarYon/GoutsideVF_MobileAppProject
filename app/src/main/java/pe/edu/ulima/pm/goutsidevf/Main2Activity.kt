@@ -15,11 +15,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import pe.edu.ulima.pm.goutsidevf.Model.Event
 import pe.edu.ulima.pm.goutsidevf.databinding.ActivityMain2Binding
+import pe.edu.ulima.pm.goutsidevf.ui.events.EventsFragment
+import pe.edu.ulima.pm.goutsidevf.ui.home.HomeFragment
 
 
-class Main2Activity : AppCompatActivity() {
-
+class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListener {
+    private lateinit var fragment : Fragment
     private lateinit var sensorManager : SensorManager
 
 
@@ -85,12 +89,9 @@ class Main2Activity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-/*    //-- Abrir el Menu cada vez que se haga Click ---------------------------------
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_settings){
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
-
+    override fun OnSelect(event: Event) {
+        fragment = HomeFragment()
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.nav_host_fragment_container, fragment)
+    }
 }
