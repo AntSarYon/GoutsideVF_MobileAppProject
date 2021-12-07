@@ -41,10 +41,6 @@ class RankingFragment : Fragment()   {
         _binding = FragmentRankingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.tviRanking
-        rankingViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 
