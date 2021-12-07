@@ -46,7 +46,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun createMarkers() {
 
         //CREACION DE MARKERS EN BASE A Documentos de Firebase
-        dbFirebase.collection("events").get().addOnSuccessListener { res ->
+        dbFirebase.collection("locations").get().addOnSuccessListener { res ->
             for (document in res){
 
                 val latitud = document.data["latitud"]!! as Double
