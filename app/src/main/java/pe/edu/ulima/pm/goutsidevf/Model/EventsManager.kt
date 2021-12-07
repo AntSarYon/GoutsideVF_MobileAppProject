@@ -34,8 +34,9 @@ class EventsManager(context: Context) {
                     val ev = Event(
                         document.data["nombre"]!! as String,
                         document.getTimestamp("fecha")!!.seconds*1000,
-                        document.data["image"]!! as String
-                        //(document.data["location"]!! as DocumentReference).id.toLong(),
+                        document.data["image"]!! as String,
+                        document.data["latitud"]!! as Double,
+                        document.data["longitud"]!! as Double
                     )
 //                    Log.i("evento",ev.toString())
                     events.add(ev)

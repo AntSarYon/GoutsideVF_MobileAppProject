@@ -12,9 +12,9 @@ data class Event(
     @ColumnInfo(name="fecha")
     val Date : Long,
     @ColumnInfo(name="image")
-    val image : String
-    //@ColumnInfo(name="")
-    //val locationX : Integer,
-    //@ColumnInfo(name="")
-    //val locationY: Integer
+    val image : String,
+    @ColumnInfo(name="latitud")
+    val latitud : Double,
+    @ColumnInfo(name="longitud")
+    val longitud: Double
 )

@@ -18,7 +18,8 @@ import com.google.firebase.ktx.Firebase
 data class LoginInfo(
     val username:String,
     val name : String,
-    val loginDate: Date
+    val loginDate: Date,
+    val photo: String
 )
 //---------------------------------------
 
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 if (findUser["password"].toString() == etePassword.text.toString()){
                     //Almacenmas la Info del UsuarioLogueado y cambiamos el Activity (implicito)
                     Log.i("mensajeBueno","EXITO")
-                    almacenarInfoLogin(findUser["username"].toString(), findUser["name"].toString())
+                    almacenarInfoLogin(findUser["username"].toString(), findUser["name"].toString(), findUser["photo"].toString())
                 }
                 else{
                     Log.i("mensajeError","La contraseña No es correcta")
@@ -148,11 +149,12 @@ class LoginActivity : AppCompatActivity() {
 
     //-----------------------------------------------------------------------------
     // -- Almacenar Info de Login en un SharedPreference ----------------------------------
-    private fun almacenarInfoLogin(username: String, name : String){
+    private fun almacenarInfoLogin(username: String, name : String, photo: String){
         val editor = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE).edit()
         editor.putString("LOGIN_USERNAME", username)
         editor.putString("LOGIN_NAME", name)
         editor.putLong("LOGIN_DATE", Date().getTime())
+        editor.putString("LOGIN_PHOTO",photo)
         editor.commit() //apply()
 
         //Una vez que se ha almacenado la info del usuario, cambiamos el Activity

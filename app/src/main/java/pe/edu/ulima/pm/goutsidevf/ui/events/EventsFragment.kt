@@ -64,7 +64,7 @@ class EventsFragment : Fragment() {
                 events,
                 this
             ){event: Event ->
-                Log.i("eventos",event.name)
+                //Log.i("eventos",event.name)
                 listener?.OnSelect(event)
             }
         },{error ->

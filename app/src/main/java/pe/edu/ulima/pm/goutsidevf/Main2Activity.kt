@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -18,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.goutsidevf.Model.Event
 import pe.edu.ulima.pm.goutsidevf.databinding.ActivityMain2Binding
 import pe.edu.ulima.pm.goutsidevf.ui.events.EventsFragment
@@ -88,8 +90,13 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
         val sp = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
         val usuario = sp.getString("LOGIN_USERNAME", "")!!
         val nombre = sp.getString("LOGIN_NAME", "")!!
+        val photo = sp.getString("LOGIN_PHOTO", "")!!
         findViewById<TextView>(R.id.tviNVName).setText(nombre)
         findViewById<TextView>(R.id.tviNVUsername).setText(usuario)
+        Glide.with(this)
+            .load(photo)
+            .fitCenter()
+            .into(findViewById(R.id.iviNVPhoto))
         menuInflater.inflate(R.menu.main2, menu)
         return true
     }
@@ -100,8 +107,8 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
     }
 
     override fun OnSelect(event: Event) {
-        fragment = HomeFragment()
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.nav_host_fragment_container, fragment)
+        val intent = Intent()
+        intent.setClass(this, MapActivity::class.java)
+        startActivity(intent)
     }
 }
