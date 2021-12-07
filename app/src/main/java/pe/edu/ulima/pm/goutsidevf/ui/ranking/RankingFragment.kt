@@ -14,8 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.goutsidevf.Adapters.EventsListAdapter
 import pe.edu.ulima.pm.goutsidevf.Adapters.UserRKListAdapter
-import pe.edu.ulima.pm.goutsidevf.Model.Event
-import pe.edu.ulima.pm.goutsidevf.Model.EventsManager
 import pe.edu.ulima.pm.goutsidevf.Model.UserRK
 import pe.edu.ulima.pm.goutsidevf.Model.UserRKManager
 import pe.edu.ulima.pm.goutsidevf.R
