@@ -11,5 +11,6 @@ data class UserRK(
     val username: String,
     @ColumnInfo(name="name")
     val name : String,
-
+    @ColumnInfo(name="photo")
+    val photo : String,
 )

@@ -23,7 +23,7 @@ import pe.edu.ulima.pm.goutsidevf.databinding.FragmentRankingBinding
 
 class RankingFragment : Fragment()   {
     interface  OnRankSelectedListener{
-        fun OnSelect(event: Event)
+        fun OnSelect(user: UserRK)
     }
     private var listener: OnRankSelectedListener? = null
     override fun onAttach(context: Context) {

@@ -3,6 +3,7 @@ package pe.edu.ulima.pm.goutsidevf.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -25,10 +26,12 @@ class UserRKListAdapter(
 
             val tviUsernameRK : TextView
             val tviNameRK : TextView
+            val iviUser : ImageView
 
             init {
-                tviUsernameRK = view.findViewById(R.id.tviUsernameRK)
-                tviNameRK = view.findViewById(R.id.tviNameRK)
+                tviUsernameRK = view.findViewById(R.id.tviRKUsername)
+                tviNameRK = view.findViewById(R.id.tviRKName)
+                iviUser = view.findViewById(R.id.iviUser)
                 view.setOnClickListener(this)
             }
 
@@ -50,7 +53,7 @@ class UserRKListAdapter(
         holder.tviUsernameRK.text = usersList[position].username
         holder.tviNameRK.text = usersList[position].name
         Glide.with(fragment)
-            .load(usersList[position].image)
+            .load(usersList[position].photo)
             .fitCenter()
             .into(holder.iviUser)
     }

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="EVENTOS"
+        android:text="Ranking"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +23,12 @@
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tviRanking"
         tools:itemCount="10"
-        tools:listitem="@layout/item_event" />
+        tools:listitem="@layout/item_rank" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
