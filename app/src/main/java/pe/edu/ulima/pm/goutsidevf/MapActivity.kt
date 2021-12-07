@@ -22,12 +22,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private var latitud : String? = null
     private var longitud : String? = null
     private var nomb : String? = null
+    private var latitudS : String? = null
+    private var longitudS : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         latitud = intent.getBundleExtra("location_data")?.getString("latitud")?.toString()
         longitud = intent.getBundleExtra("location_data")?.getString("longitud")?.toString()
         nomb = intent.getBundleExtra("location_data")?.getString("nombre")?.toString()
+        latitudS = intent.getBundleExtra("location_selected")?.getString("latitud")?.toString()
+        longitudS = intent.getBundleExtra("location_selected")?.getString("longitud")?.toString()
         setContentView(R.layout.activity_map)
 
         createMapFragment()

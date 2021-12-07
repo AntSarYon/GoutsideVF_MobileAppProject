@@ -1,14 +1,26 @@
 package pe.edu.ulima.pm.goutsidevf
 
+
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
+
 import android.widget.Button
-import android.widget.ImageView
+
 import android.widget.TextView
+import android.widget.Toast
+
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -18,6 +30,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.goutsidevf.Model.Event
@@ -30,10 +44,13 @@ import pe.edu.ulima.pm.goutsidevf.ui.ranking.RankingFragment
 
 
 class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListener,
-    RankingFragment.OnRankSelectedListener, HomeFragment.OnLocationSelectedListener {
-    private lateinit var fragment : Fragment
-    private lateinit var sensorManager : SensorManager
-
+    RankingFragment.OnRankSelectedListener, HomeFragment.OnLocationSelectedListener,
+    SensorEventListener {
+    private lateinit var fragment: Fragment
+    private lateinit var mSensorManager: SensorManager
+    private lateinit var mSensor: Sensor
+    private var isSensorPresent = false
+    private var mStepsSinceReboot: String = ""
 
     //----------------------------------------------------------------
     //------ Creado por defecto por el Drawer ------------------------
@@ -42,18 +59,38 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
     private lateinit var binding: ActivityMain2Binding
     //------------------------------------------------------------
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // 1. ------ Creado por defecto por el Drawer -----------//
-
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+            //ask for permission
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(Manifest.permission.ACTIVITY_RECOGNITION), 1)
+            };
+        }
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
+        mSensorManager = this.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+            != null
+        ) {
+            mSensor =
+                mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            isSensorPresent = true;
+        } else {
+            isSensorPresent = false;
+        }
+
+
+
         binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Pasos: ${mStepsSinceReboot}", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
@@ -112,19 +149,48 @@ class Main2Activity : AppCompatActivity(), EventsFragment.OnEventSelectedListene
 
     override fun OnSelect(event: Event) {
         val bundle = Bundle()
-        bundle.putString("latitud",event.latitud.toString())
-        bundle.putString("longitud",event.longitud.toString())
-        bundle.putString("nombre",event.name)
+        bundle.putString("latitud", event.latitud.toString())
+        bundle.putString("longitud", event.longitud.toString())
+        bundle.putString("nombre", event.name)
         val intent = Intent(this, MapActivity::class.java)
-        intent.putExtra("location_data",bundle)
+        intent.putExtra("location_data", bundle)
         startActivity(intent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(isSensorPresent)
+        {
+            mSensorManager.registerListener(this, mSensor,
+                SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+    override fun onPause() {
+        super.onPause()
+        if (isSensorPresent) {
+            mSensorManager.unregisterListener(this)
+        }
+    }
     override fun OnSelecte(user: UserRK) {
 
     }
 
     override fun OnSelectLocation(location: Location) {
-        
+        val bundle = Bundle()
+        bundle.putString("latitud",location.latitud.toString())
+        bundle.putString("longitud",location.longitud.toString())
+        val intent = Intent(this, MapActivity::class.java)
+        intent.putExtra("location_selected", bundle)
+        startActivity(intent)
     }
+
+    override fun onSensorChanged(p0: SensorEvent?) {
+        mStepsSinceReboot = p0!!.values[0].toString()
+
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+
+    }
+
 }
