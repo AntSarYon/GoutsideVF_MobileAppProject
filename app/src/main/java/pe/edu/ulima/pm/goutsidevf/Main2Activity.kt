@@ -1,10 +1,12 @@
 package pe.edu.ulima.pm.goutsidevf
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -15,13 +17,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.SupportMapFragment
 import pe.edu.ulima.pm.goutsidevf.databinding.ActivityMain2Binding
 
 
-class Main2Activity : AppCompatActivity() {
+class Main2Activity : AppCompatActivity(){
 
     private lateinit var sensorManager : SensorManager
-
 
     //----------------------------------------------------------------
     //------ Creado por defecto por el Drawer ------------------------
@@ -63,6 +66,14 @@ class Main2Activity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         //------------------------------------------------------------
         //-------------------------------------------------------------
+
+        val butMapa = findViewById<Button>(R.id.butMapa)
+        butMapa.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this, MapActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     //-----------------------------------------------------------------------------
@@ -85,12 +96,7 @@ class Main2Activity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-/*    //-- Abrir el Menu cada vez que se haga Click ---------------------------------
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_settings){
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
+
+
 
 }
