@@ -11,10 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import pe.edu.ulima.pm.goutsidevf.Model.UserRK
 import pe.edu.ulima.pm.goutsidevf.R
 import pe.edu.ulima.pm.goutsidevf.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
+
+
 
     //------------------------------------------------------------
     //------ Creado por defecto por el Drawer ----------------
@@ -52,6 +55,25 @@ class ProfileFragment : Fragment() {
             .load(photo)
             .fitCenter()
             .into(view.findViewById(R.id.iviProfile))
+        binding.btnChange.setOnClickListener {
+            changeUser()
+        }
+    }
+
+    private fun changeUser() {
+        binding.btnChange.setText("Save")
+        binding.tviName.editableText
+        binding.tviUsername.editableText
+        binding.btnChange.setOnClickListener {
+            saveChange()
+        }
+    }
+
+    private fun saveChange() {
+        binding.btnChange.setText("Change")
+        binding.btnChange.setOnClickListener {
+            changeUser()
+        }
     }
     //--------------------------------------------------------------------
     //------ Creado por defecto por el Drawer ----------------------------

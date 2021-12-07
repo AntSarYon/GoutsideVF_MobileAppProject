@@ -49,11 +49,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tviUsername" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnChange"
         android:layout_width="156dp"
         android:layout_height="38dp"
         android:layout_marginStart="80dp"
-        android:text="Button"
+        android:text="Change"
         app:layout_constraintStart_toEndOf="@+id/iviProfile"
         app:layout_constraintTop_toBottomOf="@+id/tviName" />
 

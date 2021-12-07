@@ -63,7 +63,7 @@ class PhotoActivity : AppCompatActivity() {
         }
 
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        val photoURI = FileProvider.getUriForFile(this, "pe.edu.ulima.ulgamestore.fileprovider", imageFile!!)
+        val photoURI = FileProvider.getUriForFile(this, "pe.edu.ulima.goutsidevf.fileprovider", imageFile!!)
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
         startActivityForResult(intent, 200)
