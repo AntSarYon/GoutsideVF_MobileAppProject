@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm.goutsidevf.ui.events
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,10 @@ class EventsFragment : Fragment() {
         fun OnSelect(event: Event)
     }
     private var listener: OnEventSelectedListener? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as OnEventSelectedListener
+    }
     //------------------------------------------------------------
     //------ Creado por defecto por el Drawer ----------------
 
@@ -53,11 +58,13 @@ class EventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         EventsManager(requireActivity().applicationContext).getProductsFirebase({events:List<Event>->
-            //Log.i("eventos",events.toString())
-            binding.rviEvents.adapter = EventsListAdapter(
+            Log.i("eventos",events.toString())
+            val rviEvents = view.findViewById<RecyclerView>(R.id.rviEvents)
+            rviEvents.adapter = EventsListAdapter(
                 events,
                 this
             ){event: Event ->
+                Log.i("eventos",event.name)
                 listener?.OnSelect(event)
             }
         },{error ->
