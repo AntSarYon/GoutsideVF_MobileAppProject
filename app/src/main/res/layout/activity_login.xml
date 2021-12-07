@@ -13,6 +13,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eteUsername" />
@@ -25,6 +27,8 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tviGoutside" />
